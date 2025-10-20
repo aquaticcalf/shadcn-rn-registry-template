@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-color-scheme",
+  "type": "registry:hook",
+  "title": "Use Color Scheme",
+  "description": "Hook for getting color scheme",
+  "files": [
+    {
+      "path": "hooks/use-color-scheme.ts",
+      "content": "export { useColorScheme } from \"react-native\"\n",
+      "type": "registry:hook"
+    },
+    {
+      "path": "hooks/use-color-scheme.web.ts",
+      "content": "import { useEffect, useState } from \"react\"\nimport { useColorScheme as useRNColorScheme } from \"react-native\"\n\n/**\n * To support static rendering, this value needs to be re-calculated on the client side for web\n */\nexport function useColorScheme() {\n\tconst [hasHydrated, setHasHydrated] = useState(false)\n\n\tuseEffect(() => {\n\t\tsetHasHydrated(true)\n\t}, [])\n\n\tconst colorScheme = useRNColorScheme()\n\n\tif (hasHydrated) {\n\t\treturn colorScheme\n\t}\n\n\treturn \"light\"\n}\n",
+      "type": "registry:hook"
+    }
+  ]
+}

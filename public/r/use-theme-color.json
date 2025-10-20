@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-theme-color",
+  "type": "registry:hook",
+  "title": "Use Theme Color",
+  "description": "Hook for getting theme colors",
+  "files": [
+    {
+      "path": "hooks/use-theme-color.ts",
+      "content": "/**\n * Learn more about light and dark modes:\n * https://docs.expo.dev/guides/color-schemes/\n */\n\nimport { Colors } from \"@/constants/theme\"\nimport { useColorScheme } from \"@/hooks/use-color-scheme\"\n\nexport function useThemeColor(\n\tprops: { light?: string; dark?: string },\n\tcolorName: keyof typeof Colors.light & keyof typeof Colors.dark,\n) {\n\tconst theme = useColorScheme() ?? \"light\"\n\tconst colorFromProps = props[theme]\n\n\tif (colorFromProps) {\n\t\treturn colorFromProps\n\t} else {\n\t\treturn Colors[theme][colorName]\n\t}\n}\n",
+      "type": "registry:hook"
+    }
+  ]
+}

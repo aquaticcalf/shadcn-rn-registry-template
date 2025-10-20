@@ -1,5 +1,6 @@
 {
 	"$schema": "https://ui.shadcn.com/schema/registry.json",
+	"homepage": "https://shadcn-rn-registry-template.vercel.app",
 	"name": "shadcn-rn",
 	"description": "A registry of React Native components for your app",
 	"items": [
@@ -28,6 +29,18 @@
 				},
 				{
 					"path": "hooks/use-color-scheme.web.ts",
+					"type": "registry:hook"
+				}
+			]
+		},
+		{
+			"name": "use-theme-color",
+			"type": "registry:hook",
+			"title": "Use Theme Color",
+			"description": "Hook for getting theme colors",
+			"files": [
+				{
+					"path": "hooks/use-theme-color.ts",
 					"type": "registry:hook"
 				}
 			]

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "parallax-scroll-view",
+  "type": "registry:component",
+  "title": "Parallax Scroll View",
+  "description": "A scroll view with parallax effect",
+  "dependencies": [
+    "react-native-reanimated"
+  ],
+  "registryDependencies": [
+    "use-color-scheme",
+    "use-theme-color",
+    "themed-view",
+    "themed-text"
+  ],
+  "files": [
+    {
+      "path": "registry/components-lib/components/parallax-scroll-view.tsx",
+      "content": "import type { PropsWithChildren, ReactElement } from \"react\"\nimport { StyleSheet } from \"react-native\"\nimport Animated, {\n\tinterpolate,\n\tuseAnimatedRef,\n\tuseAnimatedStyle,\n\tuseScrollOffset,\n} from \"react-native-reanimated\"\n\nimport { ThemedView } from \"@/components/themed-view\"\nimport { useColorScheme } from \"@/hooks/use-color-scheme\"\nimport { useThemeColor } from \"@/hooks/use-theme-color\"\n\nconst HEADER_HEIGHT = 250\n\ntype Props = PropsWithChildren<{\n\theaderImage: ReactElement\n\theaderBackgroundColor: { dark: string; light: string }\n}>\n\nexport default function ParallaxScrollView({\n\tchildren,\n\theaderImage,\n\theaderBackgroundColor,\n}: Props) {\n\tconst backgroundColor = useThemeColor({}, \"background\")\n\tconst colorScheme = useColorScheme() ?? \"light\"\n\tconst scrollRef = useAnimatedRef<Animated.ScrollView>()\n\tconst scrollOffset = useScrollOffset(scrollRef)\n\tconst headerAnimatedStyle = useAnimatedStyle(() => {\n\t\treturn {\n\t\t\ttransform: [\n\t\t\t\t{\n\t\t\t\t\ttranslateY: interpolate(\n\t\t\t\t\t\tscrollOffset.value,\n\t\t\t\t\t\t[-HEADER_HEIGHT, 0, HEADER_HEIGHT],\n\t\t\t\t\t\t[-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],\n\t\t\t\t\t),\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\tscale: interpolate(\n\t\t\t\t\t\tscrollOffset.value,\n\t\t\t\t\t\t[-HEADER_HEIGHT, 0, HEADER_HEIGHT],\n\t\t\t\t\t\t[2, 1, 1],\n\t\t\t\t\t),\n\t\t\t\t},\n\t\t\t],\n\t\t}\n\t})\n\n\treturn (\n\t\t<Animated.ScrollView\n\t\t\tref={scrollRef}\n\t\t\tstyle={{ backgroundColor, flex: 1 }}\n\t\t\tscrollEventThrottle={16}\n\t\t>\n\t\t\t<Animated.View\n\t\t\t\tstyle={[\n\t\t\t\t\tstyles.header,\n\t\t\t\t\t{ backgroundColor: headerBackgroundColor[colorScheme] },\n\t\t\t\t\theaderAnimatedStyle,\n\t\t\t\t]}\n\t\t\t>\n\t\t\t\t{headerImage}\n\t\t\t</Animated.View>\n\t\t\t<ThemedView style={styles.content}>{children}</ThemedView>\n\t\t</Animated.ScrollView>\n\t)\n}\n\nconst styles = StyleSheet.create({\n\tcontainer: {\n\t\tflex: 1,\n\t},\n\theader: {\n\t\theight: HEADER_HEIGHT,\n\t\toverflow: \"hidden\",\n\t},\n\tcontent: {\n\t\tflex: 1,\n\t\tpadding: 32,\n\t\tgap: 16,\n\t\toverflow: \"hidden\",\n\t},\n})\n",
+      "type": "registry:component"
+    }
+  ]
+}

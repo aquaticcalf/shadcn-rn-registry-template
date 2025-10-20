@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hello-wave",
+  "type": "registry:component",
+  "title": "Hello Wave",
+  "description": "An animated wave component",
+  "dependencies": [
+    "react-native-reanimated"
+  ],
+  "files": [
+    {
+      "path": "registry/components-lib/components/hello-wave.tsx",
+      "content": "import Animated from \"react-native-reanimated\"\n\nexport function HelloWave() {\n\treturn (\n\t\t<Animated.Text\n\t\t\tstyle={{\n\t\t\t\tfontSize: 28,\n\t\t\t\tlineHeight: 32,\n\t\t\t\tmarginTop: -6,\n\t\t\t\tanimationName: {\n\t\t\t\t\t\"50%\": { transform: [{ rotate: \"25deg\" }] },\n\t\t\t\t},\n\t\t\t\tanimationIterationCount: 4,\n\t\t\t\tanimationDuration: \"300ms\",\n\t\t\t}}\n\t\t>\n\t\t\t👋\n\t\t</Animated.Text>\n\t)\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "themed-view",
+  "type": "registry:component",
+  "title": "Themed View",
+  "description": "View component with theme support",
+  "registryDependencies": [
+    "use-theme-color"
+  ],
+  "files": [
+    {
+      "path": "registry/components-lib/components/themed-view.tsx",
+      "content": "import { View, type ViewProps } from \"react-native\"\n\nimport { useThemeColor } from \"@/hooks/use-theme-color\"\n\nexport type ThemedViewProps = ViewProps & {\n\tlightColor?: string\n\tdarkColor?: string\n}\n\nexport function ThemedView({\n\tstyle,\n\tlightColor,\n\tdarkColor,\n\t...otherProps\n}: ThemedViewProps) {\n\tconst backgroundColor = useThemeColor(\n\t\t{ light: lightColor, dark: darkColor },\n\t\t\"background\",\n\t)\n\n\treturn <View style={[{ backgroundColor }, style]} {...otherProps} />\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

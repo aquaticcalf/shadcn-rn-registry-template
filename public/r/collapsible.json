@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "type": "registry:component",
+  "title": "Collapsible",
+  "description": "A collapsible component with animations",
+  "dependencies": [
+    "lucide-react-native"
+  ],
+  "registryDependencies": [
+    "use-color-scheme",
+    "themed-text",
+    "themed-view"
+  ],
+  "files": [
+    {
+      "path": "registry/components-lib/components/collapsible.tsx",
+      "content": "import { ChevronRight } from \"lucide-react-native\"\nimport { type PropsWithChildren, useState } from \"react\"\nimport { StyleSheet, TouchableOpacity } from \"react-native\"\n\nimport { ThemedText } from \"@/components/themed-text\"\nimport { ThemedView } from \"@/components/themed-view\"\nimport { Colors } from \"@/constants/theme\"\nimport { useColorScheme } from \"@/hooks/use-color-scheme\"\n\nexport function Collapsible({\n\tchildren,\n\ttitle,\n}: PropsWithChildren & { title: string }) {\n\tconst [isOpen, setIsOpen] = useState(false)\n\tconst theme = useColorScheme() ?? \"light\"\n\n\treturn (\n\t\t<ThemedView>\n\t\t\t<TouchableOpacity\n\t\t\t\tstyle={styles.heading}\n\t\t\t\tonPress={() => setIsOpen(value => !value)}\n\t\t\t\tactiveOpacity={0.8}\n\t\t\t>\n\t\t\t\t<ChevronRight\n\t\t\t\t\tsize={18}\n\t\t\t\t\tcolor={theme === \"light\" ? Colors.light.icon : Colors.dark.icon}\n\t\t\t\t\tstyle={{ transform: [{ rotate: isOpen ? \"90deg\" : \"0deg\" }] }}\n\t\t\t\t/>\n\n\t\t\t\t<ThemedText type=\"defaultSemiBold\">{title}</ThemedText>\n\t\t\t</TouchableOpacity>\n\t\t\t{isOpen && <ThemedView style={styles.content}>{children}</ThemedView>}\n\t\t</ThemedView>\n\t)\n}\n\nconst styles = StyleSheet.create({\n\theading: {\n\t\tflexDirection: \"row\",\n\t\talignItems: \"center\",\n\t\tgap: 6,\n\t},\n\tcontent: {\n\t\tmarginTop: 6,\n\t\tmarginLeft: 24,\n\t},\n})\n",
+      "type": "registry:component"
+    }
+  ]
+}

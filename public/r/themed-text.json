@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "themed-text",
+  "type": "registry:component",
+  "title": "Themed Text",
+  "description": "Text component with theme support",
+  "registryDependencies": [
+    "use-theme-color"
+  ],
+  "files": [
+    {
+      "path": "registry/components-lib/components/themed-text.tsx",
+      "content": "import { StyleSheet, Text, type TextProps } from \"react-native\"\n\nimport { useThemeColor } from \"@/hooks/use-theme-color\"\n\nexport type ThemedTextProps = TextProps & {\n\tlightColor?: string\n\tdarkColor?: string\n\ttype?: \"default\" | \"title\" | \"defaultSemiBold\" | \"subtitle\" | \"link\"\n}\n\nexport function ThemedText({\n\tstyle,\n\tlightColor,\n\tdarkColor,\n\ttype = \"default\",\n\t...rest\n}: ThemedTextProps) {\n\tconst color = useThemeColor({ light: lightColor, dark: darkColor }, \"text\")\n\n\treturn (\n\t\t<Text\n\t\t\tstyle={[\n\t\t\t\t{ color },\n\t\t\t\ttype === \"default\" ? styles.default : undefined,\n\t\t\t\ttype === \"title\" ? styles.title : undefined,\n\t\t\t\ttype === \"defaultSemiBold\" ? styles.defaultSemiBold : undefined,\n\t\t\t\ttype === \"subtitle\" ? styles.subtitle : undefined,\n\t\t\t\ttype === \"link\" ? styles.link : undefined,\n\t\t\t\tstyle,\n\t\t\t]}\n\t\t\t{...rest}\n\t\t/>\n\t)\n}\n\nconst styles = StyleSheet.create({\n\tdefault: {\n\t\tfontSize: 16,\n\t\tlineHeight: 24,\n\t},\n\tdefaultSemiBold: {\n\t\tfontSize: 16,\n\t\tlineHeight: 24,\n\t\tfontWeight: \"600\",\n\t},\n\ttitle: {\n\t\tfontSize: 32,\n\t\tfontWeight: \"bold\",\n\t\tlineHeight: 32,\n\t},\n\tsubtitle: {\n\t\tfontSize: 20,\n\t\tfontWeight: \"bold\",\n\t},\n\tlink: {\n\t\tlineHeight: 30,\n\t\tfontSize: 16,\n\t\tcolor: \"#0a7ea4\",\n\t},\n})\n",
+      "type": "registry:component"
+    }
+  ]
+}
