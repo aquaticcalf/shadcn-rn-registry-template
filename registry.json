@@ -4,25 +4,43 @@
 	"description": "A registry of React Native components for your app",
 	"items": [
 		{
-			"name": "themed-text",
+			"name": "themed-view",
 			"type": "registry:component",
-			"title": "Themed Text",
-			"description": "Text component with theme support",
+			"title": "Themed View",
+			"description": "View component with theme support",
+			"registryDependencies": ["use-theme-color"],
 			"files": [
 				{
-					"path": "registry/components-lib/components/themed-text.tsx",
+					"path": "registry/components-lib/components/themed-view.tsx",
 					"type": "registry:component"
 				}
 			]
 		},
 		{
-			"name": "themed-view",
-			"type": "registry:component",
-			"title": "Themed View",
-			"description": "View component with theme support",
+			"name": "use-color-scheme",
+			"type": "registry:hook",
+			"title": "Use Color Scheme",
+			"description": "Hook for getting color scheme",
 			"files": [
 				{
-					"path": "registry/components-lib/components/themed-view.tsx",
+					"path": "hooks/use-color-scheme.ts",
+					"type": "registry:hook"
+				},
+				{
+					"path": "hooks/use-color-scheme.web.ts",
+					"type": "registry:hook"
+				}
+			]
+		},
+		{
+			"name": "themed-text",
+			"type": "registry:component",
+			"title": "Themed Text",
+			"description": "Text component with theme support",
+			"registryDependencies": ["use-theme-color"],
+			"files": [
+				{
+					"path": "registry/components-lib/components/themed-text.tsx",
 					"type": "registry:component"
 				}
 			]
@@ -32,7 +50,12 @@
 			"type": "registry:component",
 			"title": "Collapsible",
 			"description": "A collapsible component with animations",
-			"dependencies": ["react-native-reanimated"],
+			"dependencies": ["lucide-react-native"],
+			"registryDependencies": [
+				"use-color-scheme",
+				"themed-text",
+				"themed-view"
+			],
 			"files": [
 				{
 					"path": "registry/components-lib/components/collapsible.tsx",
@@ -45,6 +68,7 @@
 			"type": "registry:component",
 			"title": "Hello Wave",
 			"description": "An animated wave component",
+			"dependencies": ["react-native-reanimated"],
 			"files": [
 				{
 					"path": "registry/components-lib/components/hello-wave.tsx",
@@ -57,7 +81,13 @@
 			"type": "registry:component",
 			"title": "Parallax Scroll View",
 			"description": "A scroll view with parallax effect",
-			"registryDependencies": ["themed-view", "themed-text"],
+			"dependencies": ["react-native-reanimated"],
+			"registryDependencies": [
+				"use-color-scheme",
+				"use-theme-color",
+				"themed-view",
+				"themed-text"
+			],
 			"files": [
 				{
 					"path": "registry/components-lib/components/parallax-scroll-view.tsx",
