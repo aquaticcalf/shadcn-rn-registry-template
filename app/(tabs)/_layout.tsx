@@ -17,7 +17,7 @@ export default function TabLayout() {
 			}}
 		>
 			<Tabs.Screen
-				name="registry"
+				name="index"
 				options={{
 					title: "registry",
 					tabBarIcon: ({ color }) => <Grid3x3 size={28} color={color} />,
